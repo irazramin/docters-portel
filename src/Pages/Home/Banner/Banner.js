@@ -1,11 +1,12 @@
 import React from 'react';
+import chairBg from '../../../assets/images/bg.png';
 import heroBg from '../../../assets/images/chair.png';
 const Banner = () => {
   return (
     <div
-      class='hero  bg-base-900 bg-scroll lg:h-[80vh] mb-5'
+      class='hero bg-scroll lg:h-[80vh] mb-5'
       style={{
-        backgroundImage: `linear-gradient(rgba(255,255,255,.90),rgba(255,255,255,0.9)) ,url(${heroBg})`,
+        backgroundImage: `url(${chairBg})`,
         backgroundPosition: 'center center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
