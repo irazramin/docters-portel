@@ -1,6 +1,28 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+  const menuItem = (
+    <>
+      <li>
+        <Link to='/'>Home</Link>
+      </li>
+      <li tabindex='0'>
+        <Link to='/about'>About</Link>
+      </li>
+      <li>
+        <Link to='/appointment'>Appointment</Link>
+      </li>
+      <li>
+        <Link to='/reviews'>Reviews</Link>
+      </li>
+      <li>
+        <Link to='/contactus'>Contact Us</Link>
+      </li>
+      <li>
+        <Link to='/login'>Login</Link>
+      </li>
+    </>
+  );
   return (
     <div class='navbar bg-base-100'>
       <div class='navbar-start'>
@@ -21,35 +43,20 @@ const Navbar = () => {
               />
             </svg>
           </label>
+          <ul
+            tabindex='0'
+            class='menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52'
+          >
+            {menuItem}
+          </ul>
         </div>
-        <a class='btn btn-ghost normal-case text-xl'>daisyUI</a>
+        <a class='btn btn-ghost normal-case text-xl'>Doctors Portal</a>
       </div>
       <div class='navbar-center hidden lg:flex'>
-        <ul class='menu menu-horizontal p-0'>
-          <li>
-            <Link to='/'>Home</Link >
-          </li>
-          <li tabindex='0'>
-            <Link to='/about'>
-              About
-            </Link >
-          </li>
-          <li>
-            <Link to='/appointment'>Appointment</Link >
-          </li>
-          <li>
-            <Link to='/reviews'>Reviews</Link >
-          </li>
-          <li>
-            <Link to='/contactus'>Contact Us</Link >
-          </li>
-          <li>
-            <Link to='/login'>Login</Link>
-          </li>
-        </ul>
+        <ul class='menu menu-horizontal p-0'>{menuItem}</ul>
       </div>
     </div>
   );
-}
+};
 
-export default Navbar
+export default Navbar;
