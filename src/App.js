@@ -5,6 +5,7 @@ import Contactus from './Pages/Contactus/Contactus';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
 import Reviews from './Pages/Reviews/Reviews';
+import Footer from './Pages/Shared/Footer';
 import Navbar from './Pages/Shared/Navbar';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
        <Route path='/contactus' element={<Contactus />} />
        <Route path='/login' element={<Login />} />
      </Routes>
+     <Footer />
     </div>
   );
 }
