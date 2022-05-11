@@ -2,7 +2,7 @@ import React from 'react';
 import treatment from "../../../assets/images/treatment.png";
 const Details = () => {
   return (
-    <div class='hero mt-[154px] mx-[26px]'>
+    <div class='hero mt-[154px] px-[26px]'>
       <div class='hero-content flex-col lg:flex-row justify-evenly '>
         <img src={treatment} class='max-w-sm rounded-lg shadow-2xl' alt='' />
         <div className='lg:ml-[100px]'>

@@ -4,7 +4,7 @@ import heroBg from '../../../assets/images/chair.png';
 const Banner = () => {
   return (
     <div
-      class='hero bg-scroll lg:h-[80vh] mb-5'
+      class='hero lg:h-[80vh] mb-5'
       style={{
         backgroundImage: `url(${chairBg})`,
         backgroundPosition: 'center center',
