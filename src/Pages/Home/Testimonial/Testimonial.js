@@ -84,18 +84,18 @@ const Testimonial = () => {
           return (
             <div className=''>
               <SwiperSlide>
-                <div class='card shadow-xl  text-accent'>
-                  <div class='card-body items-start justify-start text-start'>
+                <div className='card shadow-xl  text-accent'>
+                  <div className='card-body items-start justify-start text-start'>
                     <p>{review}</p>
-                    <div class='card-actions mt-9'>
+                    <div className='card-actions mt-9'>
                       <div>
-                        <div class='avatar'>
-                          <div class='w-[75px] h-[75px] rounded-full ring ring-primary ring-offset-base-100 ring-offset-2'>
+                        <div className='avatar'>
+                          <div className='w-[75px] h-[75px] rounded-full ring ring-primary ring-offset-base-100 ring-offset-2'>
                             <img src={img} alt='' />
                           </div>
                         </div>
                       </div>
-                      <button class='btn btn-ghost'>Deny</button>
+                      <button className='btn btn-ghost'>Deny</button>
                     </div>
                   </div>
                 </div>
