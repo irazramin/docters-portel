@@ -1,19 +1,43 @@
 import React from 'react';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import auth from '../../../firebase.init';
+      
 const Signup = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+
+  const handleUserCreateAccount = async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const pass = e.target.password.value;
+     await createUserWithEmailAndPassword(email,pass);
+      toast.success('Registration successful', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    e.target.reset()
+  };
   return (
     <div className='flex justify-center items-center min-h-screen'>
       <div class='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
         <div class='card-body'>
           <h2 className='text-center text-xl'>Signup</h2>
-          <form>
+          <form onSubmit={handleUserCreateAccount}>
             <div class='form-control'>
               <label class='label'>
                 <span class='label-text'>Name</span>
               </label>
               <input
+                name='name'
                 type='text'
                 placeholder='name'
                 class='input input-bordered'
@@ -25,6 +49,7 @@ const Signup = () => {
               </label>
               <input
                 type='email'
+                name='email'
                 placeholder='email'
                 class='input input-bordered'
               />
@@ -36,16 +61,19 @@ const Signup = () => {
               <input
                 type='text'
                 placeholder='password'
+                name='password'
                 class='input input-bordered'
               />
             </div>
             <div class='form-control mt-6'>
-              <button class='btn btn-accent'>Signup</button>
+              <button type='submit' class='btn btn-accent'>
+                Signup
+              </button>
             </div>
           </form>
           <div className='mt-2'>
             <p className='text-xs text-center'>
-           Already have an account?
+              Already have an account?
               <button
                 onClick={() => navigate('/login')}
                 className='text-secondary font-bold cursor-pointer'
@@ -64,8 +92,20 @@ const Signup = () => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position='top-right'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='colored'
+      />
     </div>
   );
-}
+};
 
-export default Signup
+export default Signup;
