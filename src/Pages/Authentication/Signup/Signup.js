@@ -1,20 +1,30 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
-  const navigate = useNavigate();
+const Signup = () => {
+    const navigate = useNavigate();
   return (
     <div className='flex justify-center items-center min-h-screen'>
       <div class='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
         <div class='card-body'>
-          <h2 className='text-center text-xl'>Login</h2>
+          <h2 className='text-center text-xl'>Signup</h2>
           <form>
+            <div class='form-control'>
+              <label class='label'>
+                <span class='label-text'>Name</span>
+              </label>
+              <input
+                type='text'
+                placeholder='name'
+                class='input input-bordered'
+              />
+            </div>
             <div class='form-control'>
               <label class='label'>
                 <span class='label-text'>Email</span>
               </label>
               <input
-                type='text'
+                type='email'
                 placeholder='email'
                 class='input input-bordered'
               />
@@ -28,25 +38,19 @@ const Login = () => {
                 placeholder='password'
                 class='input input-bordered'
               />
-              <label class='label'>
-                <a href='#' class='label-text-alt link link-hover'>
-                  Forgot password?
-                </a>
-              </label>
             </div>
             <div class='form-control mt-6'>
-              <button class='btn btn-accent'>Login</button>
+              <button class='btn btn-accent'>Signup</button>
             </div>
           </form>
-
           <div className='mt-2'>
             <p className='text-xs text-center'>
-              New to Doctors Portal?{' '}
+           Already have an account?
               <button
-                onClick={() => navigate('/signup')}
+                onClick={() => navigate('/login')}
                 className='text-secondary font-bold cursor-pointer'
               >
-                Create new account
+                Login
               </button>
             </p>
           </div>
@@ -62,6 +66,6 @@ const Login = () => {
       </div>
     </div>
   );
-};
+}
 
-export default Login;
+export default Signup
