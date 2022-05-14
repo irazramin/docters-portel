@@ -1,26 +1,32 @@
 import React from 'react';
 import {
+  useAuthState,
   useSignInWithEmailAndPassword,
   useSignInWithGoogle
 } from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../../firebase.init';
 import ErrorMessage from '../../Shared/ErrorMessage';
+import Loading from '../../Shared/Loading';
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-
+  const [currentUser] = useAuthState(auth);
 
   const from = location.state?.from?.pathname || '/';
 
+  if (loading || gLoading){
+    return <Loading></Loading>
+  }
+
   console.log(from)
-  if(user){
-      // navigate(from, {replace:true})
+  if (currentUser) {
+    navigate(from, { replace: true });
   }
   const handleUserLogin = async (e) => {
     e.preventDefault();
@@ -30,7 +36,7 @@ const Login = () => {
     await signInWithEmailAndPassword(email, pass)
     .then(() =>{
         if(!error){
-          toast.success('Registration successful', {
+          toast.success('Login successful', {
             position: 'top-right',
             autoClose: 5000,
             hideProgressBar: false,
@@ -109,18 +115,6 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <ToastContainer
-        position='top-right'
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme='colored'
-      />
     </div>
   );
 };

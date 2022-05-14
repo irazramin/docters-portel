@@ -1,31 +1,38 @@
 import React from 'react';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../../firebase.init';
+import Loading from '../../Shared/Loading';
       
 const Signup = () => {
   const navigate = useNavigate();
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
-
+  const [updateProfile, updating, nError] = useUpdateProfile(auth);
   const handleUserCreateAccount = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const pass = e.target.password.value;
-     await createUserWithEmailAndPassword(email,pass);
-      toast.success('Registration successful', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    const name = e.target.name.value;
+    await createUserWithEmailAndPassword(email, pass);
+    if(user){
+          toast.success('Registration successful', {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+    }
+    await updateProfile({displayName:name})
     e.target.reset()
   };
+    if (loading) {
+      return <Loading></Loading>;
+    }
   return (
     <div className='flex justify-center items-center min-h-screen'>
       <div class='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
@@ -92,18 +99,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
-      <ToastContainer
-        position='top-right'
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme='colored'
-      />
+
     </div>
   );
 };

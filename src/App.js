@@ -8,6 +8,8 @@ import Reviews from './Pages/Reviews/Reviews';
 import Navbar from './Pages/Shared/Navbar';
 import Signup from './Pages/Authentication/Signup/Signup';
 import RequireAuth from './Pages/Authentication/RequireAuth/RequireAuth';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -29,6 +31,18 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />}></Route>
       </Routes>
+      <ToastContainer
+        position='top-right'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='colored'
+      />
     </div>
   );
 }
