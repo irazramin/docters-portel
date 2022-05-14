@@ -7,21 +7,28 @@ import Login from './Pages/Authentication/Login/Login';
 import Reviews from './Pages/Reviews/Reviews';
 import Navbar from './Pages/Shared/Navbar';
 import Signup from './Pages/Authentication/Signup/Signup';
+import RequireAuth from './Pages/Authentication/RequireAuth/RequireAuth';
 
 function App() {
   return (
-    <div >
-     <Navbar />
-     <Routes>
-       <Route path='/' element={<Home />} />
-       <Route path='/about' element={<About />} />
-       <Route path='/appointment' element={<Appointment />} />
-       <Route path='/reviews' element={<Reviews />} />
-       <Route path='/contactus' element={<Contactus />} />
-       <Route path='/login' element={<Login />} />
-       <Route path='/signup' element={<Signup />} ></Route>
-     </Routes>
-
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/about' element={<About />} />
+        <Route
+          path='/appointment'
+          element={
+            <RequireAuth>
+              <Appointment />
+            </RequireAuth>
+          }
+        />
+        <Route path='/reviews' element={<Reviews />} />
+        <Route path='/contactus' element={<Contactus />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />}></Route>
+      </Routes>
     </div>
   );
 }

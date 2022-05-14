@@ -1,20 +1,62 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle
+} from 'react-firebase-hooks/auth';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import auth from '../../../firebase.init';
+import ErrorMessage from '../../Shared/ErrorMessage';
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+
+
+  const from = location.state?.from?.pathname || '/';
+
+  console.log(from)
+  if(user){
+      // navigate(from, {replace:true})
+  }
+  const handleUserLogin = async (e) => {
+    e.preventDefault();
+
+    const email = e.target.email.value;
+    const pass = e.target.password.value;
+    await signInWithEmailAndPassword(email, pass)
+    .then(() =>{
+        if(!error){
+          toast.success('Registration successful', {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
+    })
+    
+    e.target.reset();
+  };
   return (
     <div className='flex justify-center items-center min-h-screen'>
       <div class='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
         <div class='card-body'>
           <h2 className='text-center text-xl'>Login</h2>
-          <form>
+          <form onSubmit={handleUserLogin}>
             <div class='form-control'>
               <label class='label'>
                 <span class='label-text'>Email</span>
               </label>
               <input
-                type='text'
+                name='email'
+                type='email'
                 placeholder='email'
                 class='input input-bordered'
               />
@@ -24,7 +66,8 @@ const Login = () => {
                 <span class='label-text'>Password</span>
               </label>
               <input
-                type='text'
+                type='password'
+                name='password'
                 placeholder='password'
                 class='input input-bordered'
               />
@@ -35,7 +78,10 @@ const Login = () => {
               </label>
             </div>
             <div class='form-control mt-6'>
-              <button class='btn btn-accent'>Login</button>
+              <ErrorMessage errMsg={error?.message || gError?.message} />
+              <button type='submit' class='btn btn-accent'>
+                Login
+              </button>
             </div>
           </form>
 
@@ -54,12 +100,27 @@ const Login = () => {
             <div class='divider'>OR</div>
           </div>
           <div>
-            <button class='btn w-full btn-outline btn-accent uppercase'>
+            <button onClick={() => {
+              signInWithGoogle();
+              navigate('/');
+            }} class='btn w-full btn-outline btn-accent uppercase'>
               CONTINUE WITH GOOGLE
             </button>
           </div>
         </div>
       </div>
+      <ToastContainer
+        position='top-right'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='colored'
+      />
     </div>
   );
 };

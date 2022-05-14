@@ -6,12 +6,12 @@ import { getAuth } from 'firebase/auth';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyApQ8Im6UGpFXyBE5ffqj9XLEbLTd664pM',
-  authDomain: 'doctors-portal-90e0d.firebaseapp.com',
-  projectId: 'doctors-portal-90e0d',
-  storageBucket: 'doctors-portal-90e0d.appspot.com',
-  messagingSenderId: '136953136836',
-  appId: '1:136953136836:web:436397711167ebeaa6eb91',
+  apiKey:process.env.REACT_APP_apiKey,
+  authDomain:process.env.REACT_APP_authDomain,
+  projectId:process.env.REACT_APP_projectId,
+  storageBucket:process.env.REACT_APP_storageBucket,
+  messagingSenderId:process.env.REACT_APP_messagingSenderId,
+  appId:process.env.REACT_APP_appId,
 };
 
 // Initialize Firebase
