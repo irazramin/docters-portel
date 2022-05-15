@@ -4,7 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import auth from '../../../../firebase.init';
 
-const Modal = ({ treatment, date, setTreatment }) => {
+const Modal = ({ treatment, date, setTreatment, refetch }) => {
   const [user] = useAuthState(auth);
   const handleTreatmentSubmit = (e) => {
     const { _id, name } = treatment;
@@ -40,6 +40,7 @@ const Modal = ({ treatment, date, setTreatment }) => {
         }
       });
     setTreatment(null);
+    refetch()
   };
   return (
     <div>

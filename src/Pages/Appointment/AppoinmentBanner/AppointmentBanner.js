@@ -22,7 +22,6 @@ const AppointmentBanner = ({date,setDate}) => {
             mode='single'
             selected={date}
             onSelect={setDate}
-           
           />
         </div>
         <p>You have selected : {format(date,"PP")}</p>
