@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../../firebase.init';
+import useToken from '../../hooks/useToken';
 import ErrorMessage from '../../Shared/ErrorMessage';
 import Loading from '../../Shared/Loading';
 const Login = () => {
@@ -17,7 +18,7 @@ const Login = () => {
     useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [currentUser] = useAuthState(auth);
-
+  const [token] = useToken(user || gUser)
   const from = location.state?.from?.pathname || '/';
 
   if (loading || gLoading){
@@ -25,7 +26,7 @@ const Login = () => {
   }
 
   console.log(from)
-  if (currentUser) {
+  if (token) {
     navigate(from, { replace: true });
   }
   const handleUserLogin = async (e) => {
@@ -108,7 +109,6 @@ const Login = () => {
           <div>
             <button onClick={() => {
               signInWithGoogle();
-              navigate('/');
             }} class='btn w-full btn-outline btn-accent uppercase'>
               CONTINUE WITH GOOGLE
             </button>

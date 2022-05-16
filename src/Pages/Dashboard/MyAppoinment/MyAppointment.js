@@ -7,11 +7,13 @@ const MyAppointment = () => {
   const [user] = useAuthState(auth);
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/booking?patient=${user}`)
+      fetch(`http://localhost:5000/booking?patient=${user?.email}`)
         .then((res) => res.json())
         .then((data) => setAppointments(data));
+        
     }
   }, [user]);
+
   return (
     <div class='overflow-x-auto bg-[#F1F5F9] lg:px-20 px-10'>
       <h2 className='text-2xl my-6'>My Appointment</h2>
