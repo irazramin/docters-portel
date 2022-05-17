@@ -20,7 +20,7 @@ const Modal = ({ treatment, date, setTreatment, refetch }) => {
       patientEmail: user?.email,
       phone,
     };
-    fetch(`http://localhost:5000/booking`, {
+    fetch(`https://immense-beach-40730.herokuapp.com/booking`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -44,15 +44,15 @@ const Modal = ({ treatment, date, setTreatment, refetch }) => {
   };
   return (
     <div>
-      <input type='checkbox' id='booking-modal' class='modal-toggle relative' />
-      <div class='modal modal-bottom sm:modal-middle'>
-        <div class='modal-box'>
-          <h3 class='font-bold text-lg text-secondary'>
+      <input type='checkbox' id='booking-modal' className='modal-toggle relative' />
+      <div className='modal modal-bottom sm:modal-middle'>
+        <div className='modal-box'>
+          <h3 className='font-bold text-lg text-secondary'>
             Your appointment on {treatment.name}
           </h3>
           <label
-            for='booking-modal'
-            class='btn btn-sm btn-circle absolute right-2 top-2'
+            htmlFor='booking-modal'
+            className='btn btn-sm btn-circle absolute right-2 top-2'
           >
             ✕
           </label>
@@ -62,12 +62,12 @@ const Modal = ({ treatment, date, setTreatment, refetch }) => {
           >
             <input
               type='text'
-              class='input input-bordered w-full'
+              className='input input-bordered w-full'
               value={format(date, 'PP')}
               disabled
             />
 
-            <select name='slot' class='select select-bordered  w-full'>
+            <select name='slot' className='select select-bordered  w-full'>
               {treatment.slots.map((slot) => (
                 <option value={slot}>{slot}</option>
               ))}
@@ -79,7 +79,7 @@ const Modal = ({ treatment, date, setTreatment, refetch }) => {
               value={user?.displayName || ''}
               disabled
               placeholder='Full name'
-              class='input input-bordered w-full'
+              className='input input-bordered w-full'
             />
             <input
               name='email'
@@ -87,13 +87,13 @@ const Modal = ({ treatment, date, setTreatment, refetch }) => {
               value={user?.email || ''}
               disabled
               placeholder='Email'
-              class='input input-bordered w-full '
+              className='input input-bordered w-full '
             />
             <input
               type='number'
               placeholder='Phone number'
               name='phone'
-              class='input input-bordered w-full'
+              className='input input-bordered w-full'
             />
             <input
               type='submit'
@@ -101,7 +101,7 @@ const Modal = ({ treatment, date, setTreatment, refetch }) => {
               className='btn btn-accent w-full'
             />
           </form>
-          <div class='modal-action'></div>
+          <div className='modal-action'></div>
         </div>
       </div>
     </div>

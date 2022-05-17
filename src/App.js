@@ -10,6 +10,7 @@ import Contactus from './Pages/Contactus/Contactus';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import MyAppointment from './Pages/Dashboard/MyAppoinment/MyAppointment';
 import MyReview from './Pages/Dashboard/MyReview/MyReview';
+import Users from './Pages/Dashboard/Users/Users';
 import Home from './Pages/Home/Home';
 import Reviews from './Pages/Reviews/Reviews';
 import Navbar from './Pages/Shared/Navbar';
@@ -33,12 +34,13 @@ function App() {
           path='/dashboard'
           element={
             <RequireAuth>
-              <Dashboard  />
+              <Dashboard />
             </RequireAuth>
           }
         >
-          <Route index element={<MyAppointment />} ></Route>
-          <Route path='myreview' element={<MyReview />} ></Route>
+          <Route index element={<MyAppointment />}></Route>
+          <Route path='myreview' element={<MyReview />}></Route>
+          <Route path='myusers' element={<Users />}></Route>
         </Route>
         <Route path='/reviews' element={<Reviews />} />
         <Route path='/contactus' element={<Contactus />} />

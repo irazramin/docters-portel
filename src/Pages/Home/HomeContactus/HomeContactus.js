@@ -43,12 +43,12 @@ const HomeContactus = () => {
                 className='input input-bordered'
               />
             </div>
-            <div class='form-control'>
-              <label class='label'>
-                <span class='label-text'>Your Message</span>
+            <div className='form-control'>
+              <label className='label'>
+                <span className='label-text'>Your Message</span>
               </label>
               <textarea
-                class='textarea textarea-bordered h-20'
+                className='textarea textarea-bordered h-20'
                 placeholder='message'
               ></textarea>
             </div>

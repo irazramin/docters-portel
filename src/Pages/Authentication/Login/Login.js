@@ -18,14 +18,13 @@ const Login = () => {
     useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [currentUser] = useAuthState(auth);
-  const [token] = useToken(user || gUser)
+  const [token] = useToken(user || gUser || currentUser)
   const from = location.state?.from?.pathname || '/';
 
   if (loading || gLoading){
     return <Loading></Loading>
   }
 
-  console.log(from)
   if (token) {
     navigate(from, { replace: true });
   }
@@ -53,40 +52,40 @@ const Login = () => {
   };
   return (
     <div className='flex justify-center items-center min-h-screen'>
-      <div class='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
-        <div class='card-body'>
+      <div className='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
+        <div className='card-body'>
           <h2 className='text-center text-xl'>Login</h2>
           <form onSubmit={handleUserLogin}>
-            <div class='form-control'>
-              <label class='label'>
-                <span class='label-text'>Email</span>
+            <div className='form-control'>
+              <label className='label'>
+                <span className='label-text'>Email</span>
               </label>
               <input
                 name='email'
                 type='email'
                 placeholder='email'
-                class='input input-bordered'
+                className='input input-bordered'
               />
             </div>
-            <div class='form-control'>
-              <label class='label'>
-                <span class='label-text'>Password</span>
+            <div className='form-control'>
+              <label className='label'>
+                <span className='label-text'>Password</span>
               </label>
               <input
                 type='password'
                 name='password'
                 placeholder='password'
-                class='input input-bordered'
+                className='input input-bordered'
               />
-              <label class='label'>
-                <a href='#' class='label-text-alt link link-hover'>
+              <label className='label'>
+                <a href='#' className='label-text-alt link link-hover'>
                   Forgot password?
                 </a>
               </label>
             </div>
-            <div class='form-control mt-6'>
+            <div className='form-control mt-6'>
               <ErrorMessage errMsg={error?.message || gError?.message} />
-              <button type='submit' class='btn btn-accent'>
+              <button type='submit' className='btn btn-accent'>
                 Login
               </button>
             </div>
@@ -103,13 +102,13 @@ const Login = () => {
               </button>
             </p>
           </div>
-          <div class='flex flex-col mx-5 border-opacity-50'>
-            <div class='divider'>OR</div>
+          <div className='flex flex-col mx-5 border-opacity-50'>
+            <div className='divider'>OR</div>
           </div>
           <div>
             <button onClick={() => {
               signInWithGoogle();
-            }} class='btn w-full btn-outline btn-accent uppercase'>
+            }} className='btn w-full btn-outline btn-accent uppercase'>
               CONTINUE WITH GOOGLE
             </button>
           </div>

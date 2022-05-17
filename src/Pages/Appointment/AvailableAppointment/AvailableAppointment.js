@@ -14,7 +14,7 @@ const AvailableAppointment = ({ date }) => {
        isLoading,
        refetch,
      } = useQuery(['available', formattedDate], () =>
-       fetch(`http://localhost:5000/available?date=${formattedDate}`).then(
+       fetch(`https://immense-beach-40730.herokuapp.com/available?date=${formattedDate}`).then(
          (res) => res.json()
        )
      );

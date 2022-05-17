@@ -1,10 +1,10 @@
 import React from 'react';
 import {
   useCreateUserWithEmailAndPassword,
-  useUpdateProfile,
+  useUpdateProfile
 } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 import useToken from '../../hooks/useToken';
 import Loading from '../../Shared/Loading';
@@ -43,45 +43,45 @@ const Signup = () => {
   }
   return (
     <div className='flex justify-center items-center min-h-screen'>
-      <div class='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
-        <div class='card-body'>
+      <div className='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
+        <div className='card-body'>
           <h2 className='text-center text-xl'>Signup</h2>
           <form onSubmit={handleUserCreateAccount}>
-            <div class='form-control'>
-              <label class='label'>
-                <span class='label-text'>Name</span>
+            <div className='form-control'>
+              <label className='label'>
+                <span className='label-text'>Name</span>
               </label>
               <input
                 name='name'
                 type='text'
                 placeholder='name'
-                class='input input-bordered'
+                className='input input-bordered'
               />
             </div>
-            <div class='form-control'>
-              <label class='label'>
-                <span class='label-text'>Email</span>
+            <div className='form-control'>
+              <label className='label'>
+                <span className='label-text'>Email</span>
               </label>
               <input
                 type='email'
                 name='email'
                 placeholder='email'
-                class='input input-bordered'
+                className='input input-bordered'
               />
             </div>
-            <div class='form-control'>
-              <label class='label'>
-                <span class='label-text'>Password</span>
+            <div className='form-control'>
+              <label className='label'>
+                <span className='label-text'>Password</span>
               </label>
               <input
                 type='text'
                 placeholder='password'
                 name='password'
-                class='input input-bordered'
+                className='input input-bordered'
               />
             </div>
-            <div class='form-control mt-6'>
-              <button type='submit' class='btn btn-accent'>
+            <div className='form-control mt-6'>
+              <button type='submit' className='btn btn-accent'>
                 Signup
               </button>
             </div>
@@ -97,11 +97,11 @@ const Signup = () => {
               </button>
             </p>
           </div>
-          <div class='flex flex-col mx-5 border-opacity-50'>
-            <div class='divider'>OR</div>
+          <div className='flex flex-col mx-5 border-opacity-50'>
+            <div className='divider'>OR</div>
           </div>
           <div>
-            <button class='btn w-full btn-outline btn-accent uppercase'>
+            <button className='btn w-full btn-outline btn-accent uppercase'>
               CONTINUE WITH GOOGLE
             </button>
           </div>

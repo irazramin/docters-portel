@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import React, { useState } from 'react';
+import React from 'react';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import chairBg from '../../../assets/images/bg.png';
@@ -7,7 +7,7 @@ import heroBg from '../../../assets/images/chair.png';
 const AppointmentBanner = ({date,setDate}) => {
   return (
     <div
-      class='hero  px-[40px]  lg:h-[80vh]'
+      className='hero  px-[40px]  lg:h-[80vh]'
       style={{
         backgroundImage: `url(${chairBg})`,
         backgroundPosition: 'center center',
@@ -15,8 +15,8 @@ const AppointmentBanner = ({date,setDate}) => {
         backgroundSize: 'cover',
       }}
     >
-      <div class='hero-content flex-col lg:flex-row-reverse gap-20 '>
-        <img src={heroBg} class='max-w-sm rounded-lg shadow-2xl' alt='' />
+      <div className='hero-content flex-col lg:flex-row-reverse gap-20 '>
+        <img src={heroBg} className='max-w-sm rounded-lg shadow-2xl' alt='' />
         <div>
           <DayPicker
             mode='single'
