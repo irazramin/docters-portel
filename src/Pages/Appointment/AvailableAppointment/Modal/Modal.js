@@ -20,7 +20,7 @@ const Modal = ({ treatment, date, setTreatment, refetch }) => {
       patientEmail: user?.email,
       phone,
     };
-    fetch(`https://immense-beach-40730.herokuapp.com/booking`, {
+    fetch(`http://localhost:5000/booking`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',

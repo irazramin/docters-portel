@@ -2,7 +2,7 @@ import React from 'react';
 import {
   useAuthState,
   useSignInWithEmailAndPassword,
-  useSignInWithGoogle
+  useSignInWithGoogle,
 } from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -18,38 +18,39 @@ const Login = () => {
     useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [currentUser] = useAuthState(auth);
-  const [token] = useToken(user || gUser || currentUser)
+  const [token] = useToken(user || gUser || currentUser);
   const from = location.state?.from?.pathname || '/';
 
-  if (loading || gLoading){
-    return <Loading></Loading>
+  if (loading || gLoading) {
+    return <Loading></Loading>;
   }
 
-  if (token) {
-    navigate(from, { replace: true });
-  }
   const handleUserLogin = async (e) => {
     e.preventDefault();
 
     const email = e.target.email.value;
     const pass = e.target.password.value;
-    await signInWithEmailAndPassword(email, pass)
-    .then(() =>{
-        if(!error){
-          toast.success('Login successful', {
-            position: 'top-right',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        }
-    })
-    
+    await signInWithEmailAndPassword(email, pass).then(() => {
+      if (!error) {
+        toast.success('Login successful', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    });
+
     e.target.reset();
   };
+
+  if (token) {
+    navigate(from, { replace: true });
+  }
+
   return (
     <div className='flex justify-center items-center min-h-screen'>
       <div className='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
@@ -106,9 +107,12 @@ const Login = () => {
             <div className='divider'>OR</div>
           </div>
           <div>
-            <button onClick={() => {
-              signInWithGoogle();
-            }} className='btn w-full btn-outline btn-accent uppercase'>
+            <button
+              onClick={() => {
+                signInWithGoogle();
+              }}
+              className='btn w-full btn-outline btn-accent uppercase'
+            >
               CONTINUE WITH GOOGLE
             </button>
           </div>
